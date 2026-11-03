@@ -8,8 +8,8 @@ class Node {
 
 class Tree {
   constructor(array) {
-    this.array = array;
-    this.root = this.buildTree(array);
+    this.array = organizeArray(array);
+    this.root = this.buildTree(this.array);
   }
 
   buildTree(array) {
@@ -71,6 +71,13 @@ class Tree {
   }
 }
 
+function organizeArray(array) {
+  const uniqueNumbers = [...new Set(array)];
+  uniqueNumbers.sort((a, b) => a - b);
+
+  return uniqueNumbers;
+}
+
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null || node === undefined) {
     return;
@@ -81,6 +88,6 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
 };
 
-const tree = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-tree.insert(0);
+const tree = new Tree([40, 100, 1, 5, 25, 10]);
+console.log(tree.array);
 prettyPrint(tree.root);

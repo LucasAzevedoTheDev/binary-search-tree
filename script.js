@@ -21,12 +21,19 @@ function buildTree(array) {
   const root = new Node(array[mid]);
 
   const left = array.slice(0, mid);
-  root.left = buildTree(left);  
+  root.left = buildTree(left);
 
   const right = array.slice(mid + 1, array.length);
   root.right = buildTree(right);
 
   return root;
+}
+
+function includes(node, value) {
+  // node is null = ?
+  // value equals node's data = ? 
+  // value smaller than node's data = ? 
+  // value bigger than node's data = ? 
 }
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -39,5 +46,5 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
 };
 
-const root = buildTree([1, 2, 3, 4, 5, 6, 7 ]);
+const root = buildTree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 prettyPrint(root);

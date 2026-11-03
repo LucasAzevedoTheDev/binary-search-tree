@@ -9,42 +9,42 @@ class Node {
 class Tree {
   constructor(array) {
     this.array = array;
-    this.root = null;
-  }
-}
-
-function buildTree(array) {
-  if (array.length === 0) {
-    return null;
-  }
-  const mid = Math.floor(array.length / 2);
-  const root = new Node(array[mid]);
-
-  const left = array.slice(0, mid);
-  root.left = buildTree(left);
-
-  const right = array.slice(mid + 1, array.length);
-  root.right = buildTree(right);
-
-  return root;
-}
-
-function includes(node, value) {
-  let currentNode = node;
-
-  if (currentNode === null) {
-    return false;
-  }
-  if (value === currentNode.data) {
-    return true;
+    this.root = this.buildTree(array);
   }
 
-  if (value < currentNode.data) {
-    currentNode = node.left;
-    return includes(currentNode, value);
-  } else if (value > currentNode.data) {
-    currentNode = node.right;
-    return includes(currentNode, value);
+  buildTree(array) {
+    if (array.length === 0) {
+      return null;
+    }
+    const mid = Math.floor(array.length / 2);
+    const root = new Node(array[mid]);
+
+    const left = array.slice(0, mid);
+    root.left = this.buildTree(left);
+
+    const right = array.slice(mid + 1, array.length);
+    root.right = this.buildTree(right);
+
+    return root;
+  }
+
+  includes(node, value) {
+    let currentNode = node;
+
+    if (currentNode === null) {
+      return false;
+    }
+    if (value === currentNode.data) {
+      return true;
+    }
+
+    if (value < currentNode.data) {
+      currentNode = node.left;
+      return this.includes(currentNode, value);
+    } else if (value > currentNode.data) {
+      currentNode = node.right;
+      return this.includes(currentNode, value);
+    }
   }
 }
 
@@ -58,6 +58,7 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
 };
 
-const root = buildTree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-prettyPrint(root);
-console.log(includes(root, 1));
+const tree = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+console.log(tree.array);
+prettyPrint(tree.root);
+console.log(tree.includes(tree.root, 1));

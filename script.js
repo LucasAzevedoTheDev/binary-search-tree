@@ -29,21 +29,17 @@ class Tree {
   }
 
   includes(value, node = this.root) {
-    let currentNode = node;
-
-    if (currentNode === null) {
+    if (node === null) {
       return false;
     }
-    if (value === currentNode.data) {
+    if (value === node.data) {
       return true;
     }
 
-    if (value < currentNode.data) {
-      currentNode = node.left;
-      return this.includes(value, currentNode);
-    } else if (value > currentNode.data) {
-      currentNode = node.right;
-      return this.includes(value, currentNode);
+    if (value < node.data) {
+      return this.includes(value, node.left);
+    } else if (value > node.data) {
+      return this.includes(value, node.right);
     }
   }
 
@@ -53,7 +49,7 @@ class Tree {
       this.root = new Node(value);
       return this.root;
     }
-    
+
     let currentNode = node;
     if (currentNode.data === value) {
       return currentNode;

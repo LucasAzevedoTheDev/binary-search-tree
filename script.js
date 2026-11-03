@@ -44,35 +44,29 @@ class Tree {
   }
 
   insert(value, node = this.root) {
-    if (this.includes(value)) return;
     if (this.root === null) {
       this.root = new Node(value);
       return this.root;
     }
 
-    let currentNode = node;
-    if (currentNode.data === value) {
-      return currentNode;
+    if (node.data === value) {
+      return node;
     }
 
-    if (currentNode.data < value) {
+    if (node.data < value) {
       if (node.right === null) {
         node.right = new Node(value);
         return this.root;
       }
-
-      currentNode = node.right;
-      return this.insert(value, currentNode);
+      return this.insert(value, node.right);
     }
 
-    if (currentNode.data > value) {
+    if (node.data > value) {
       if (node.left === null) {
         node.left = new Node(value);
         return this.root;
       }
-
-      currentNode = node.left;
-      return this.insert(value, currentNode);
+      return this.insert(value, node.left);
     }
   }
 }

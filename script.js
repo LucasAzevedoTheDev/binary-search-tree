@@ -30,10 +30,22 @@ function buildTree(array) {
 }
 
 function includes(node, value) {
-  // node is null = ?
-  // value equals node's data = ? 
-  // value smaller than node's data = ? 
-  // value bigger than node's data = ? 
+  let currentNode = node;
+
+  if (currentNode === null) {
+    return false;
+  }
+  if (value === currentNode.data) {
+    return true;
+  }
+
+  if (value < currentNode.data) {
+    currentNode = node.left;
+    return includes(currentNode, value);
+  } else if (value > currentNode.data) {
+    currentNode = node.right;
+    return includes(currentNode, value);
+  }
 }
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -48,3 +60,4 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 const root = buildTree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 prettyPrint(root);
+console.log(includes(root, 1));

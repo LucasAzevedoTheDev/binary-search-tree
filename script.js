@@ -49,9 +49,12 @@ class Tree {
 
   insert(value, node = this.root) {
     if (this.includes(value)) return;
-
+    if (this.root === null) {
+      this.root = new Node(value);
+      return this.root;
+    }
+    
     let currentNode = node;
-
     if (currentNode.data === value) {
       return currentNode;
     }
@@ -89,7 +92,5 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 };
 
 const tree = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-// console.log(tree.array);
-// prettyPrint(tree.root);
 tree.insert(0);
 prettyPrint(tree.root);

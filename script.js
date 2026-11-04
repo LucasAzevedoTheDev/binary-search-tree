@@ -133,6 +133,9 @@ class Tree {
       return;
     }
     //                    CASE 3
+    if(target.right !== null && target.left !== null) {
+      // 
+    }
   }
 }
 

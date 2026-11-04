@@ -105,6 +105,7 @@ class Tree {
   deleteItem(value) {
     let parentNode = this.findParent(value);
     let target = this.find(value);
+    let targetChild;
 
     //                    CASE 1 (Node has no children)
     if (target.right === null && target.left === null) {
@@ -115,24 +116,22 @@ class Tree {
       }
       return;
     }
-
     //                    CASE 2 (Node has one child (left or right))
+    if (target.right !== null || target.left !== null) {
+      if (target.right !== null) {
+        targetChild = target.right;
+      } else if (target.left !== null) {
+        targetChild = target.left;
+      }
 
-    let targetChild;
-
-    if (target.right !== null) {
-      targetChild = target.right;
-    } else if (target.left !== null) {
-      targetChild = target.left;
+      if (parentNode > target) {
+        parentNode.right = targetChild;
+      }
+      if (parentNode < target) {
+        parentNode.left = targetChild;
+      }
+      return;
     }
-
-    if (parentNode > target) {
-      parentNode.right = targetChild;
-    }
-    if (parentNode < target) {
-      parentNode.left = targetChild;
-    }
-    return;
     //                    CASE 3
   }
 }

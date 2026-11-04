@@ -124,11 +124,11 @@ class Tree {
         targetChild = target.left;
       }
 
-      if (parentNode > target) {
-        parentNode.right = targetChild;
-      }
-      if (parentNode < target) {
+      if (parentNode.data > target.data) {
         parentNode.left = targetChild;
+      }
+      if (parentNode.data < target.data) {
+        parentNode.right = targetChild;
       }
       return;
     }
@@ -158,5 +158,5 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 const tree = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 prettyPrint(tree.root);
-tree.deleteItem(5);
+tree.deleteItem(2); 
 prettyPrint(tree.root);

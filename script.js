@@ -105,7 +105,12 @@ class Tree {
   deleteItem(value) {
     //                    CASE 1 (Node has no children)
     // change node value to null
-    
+    let parentNode = this.findParent(value);
+    if (parentNode > value) {
+      parentNode.left = null;
+    } else {
+      parentNode.right = null;
+    }
     //                    CASE 2
     //                    CASE 3
   }

@@ -106,12 +106,18 @@ class Tree {
     //                    CASE 1 (Node has no children)
     // change node value to null
     let parentNode = this.findParent(value);
-    if (parentNode > value) {
+    if (parentNode.data > value) {
       parentNode.left = null;
     } else {
       parentNode.right = null;
     }
-    //                    CASE 2
+
+    //                    CASE 2 (Node has one child (left or right))
+    // take the value and find the node
+    // check the node that's not null
+    // find the parent node
+    // connect it to parent node
+    
     //                    CASE 3
   }
 }
@@ -135,6 +141,5 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 const tree = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 prettyPrint(tree.root);
-tree.deleteItem(10);
+tree.deleteItem(1);
 prettyPrint(tree.root);
-console.log(tree.findParent(10));

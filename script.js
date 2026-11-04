@@ -69,6 +69,12 @@ class Tree {
       return this.insert(value, node.left);
     }
   }
+
+  deleteItem(value) {
+    // CASE 1
+    // CASE 2
+    // CASE 3
+  }
 }
 
 function organizeArray(array) {
@@ -88,6 +94,5 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
 };
 
-const tree = new Tree([40, 100, 1, 5, 25, 10]);
-console.log(tree.array);
+const tree = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 prettyPrint(tree.root);

@@ -157,6 +157,15 @@ class Tree {
       return;
     }
   }
+
+  levelOrderForEach(callback) {
+    if(!callback) {
+      throw new Error("Callback function is required!");
+    }
+    if(this.root === undefined) {
+      return undefined;
+    }
+  }
 }
 
 function organizeArray(array) {

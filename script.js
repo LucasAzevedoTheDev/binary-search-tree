@@ -172,6 +172,11 @@ class Tree {
       if (current.right !== null) queue.push(current.right);
     }
   }
+
+  inOrderForEach(callback) {
+    if (!callback) throw new Error("Callback function is required!");
+    if (this.root === null) return;
+  }
 }
 
 function organizeArray(array) {

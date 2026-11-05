@@ -190,6 +190,11 @@ class Tree {
     this.preOrderForEach(callback, node.left);
     this.preOrderForEach(callback, node.right);
   }
+
+  postOrderForEach(callback, node = this.root) {
+    if (!callback) throw new Error("Callback function is required!");
+    if (node === null) return;
+  }
 }
 
 function organizeArray(array) {

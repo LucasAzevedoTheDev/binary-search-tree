@@ -159,12 +159,17 @@ class Tree {
   }
 
   levelOrderForEach(callback) {
-    if(!callback) {
-      throw new Error("Callback function is required!");
-    }
-    if(this.root === undefined) {
-      return undefined;
-    }
+    if(!callback) throw new Error("Callback function is required!");
+    if(this.root === null) return;
+
+    // make the queue array
+    // go to the root
+    // stores root left and right in queue
+    // go to the root left and remove it from queue
+    // add root left children to end of queue (left-right)
+    // go to first value of queue and add children to end of queue
+    // go to first value of queue and add children to end of queue
+    // ................
   }
 }
 
@@ -186,6 +191,4 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 };
 
 const tree = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-prettyPrint(tree.root);
-tree.deleteItem(6);
 prettyPrint(tree.root);

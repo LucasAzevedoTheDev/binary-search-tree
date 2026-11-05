@@ -202,8 +202,16 @@ class Tree {
 
   height(value) {
     let node = this.find(value);
-    if(!node) return undefined;
-    
+    if (!node) return undefined;
+
+    const getHeight = (current) => {
+      if (current === null) return -1;
+      const leftHeight = getHeight(current.left);
+      const rightHeight = getHeight(current.right);
+
+      return Math.max(leftHeight, rightHeight) + 1;
+    };
+    return getHeight(node);
   }
 }
 
@@ -226,4 +234,4 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 const tree = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 prettyPrint(tree.root);
-console.log(tree.height(10))
+console.log(tree.height(9));

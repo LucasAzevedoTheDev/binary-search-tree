@@ -107,6 +107,8 @@ class Tree {
     let target = this.find(value);
     let targetChild;
 
+    if(target === undefined) return;
+
     if (target.right === null && target.left === null) {
       if(parentNode === undefined) {
         this.root = null;
@@ -174,12 +176,7 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
 };
 
-// const tree = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-// prettyPrint(tree.root);
-// tree.deleteItem(6);
-// prettyPrint(tree.root);
-
-
 const tree = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-tree.deleteItem(99);
+prettyPrint(tree.root);
+tree.deleteItem(6);
 prettyPrint(tree.root);

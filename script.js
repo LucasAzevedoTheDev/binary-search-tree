@@ -107,10 +107,10 @@ class Tree {
     let target = this.find(value);
     let targetChild;
 
-    if(target === undefined) return;
+    if (target === undefined) return;
 
     if (target.right === null && target.left === null) {
-      if(parentNode === undefined) {
+      if (parentNode === undefined) {
         this.root = null;
         return;
       }
@@ -133,11 +133,11 @@ class Tree {
         targetChild = target.left;
       }
 
-      if(parentNode === undefined) {
+      if (parentNode === undefined) {
         this.root = targetChild;
         return;
       }
-      
+
       if (parentNode.data > target.data) {
         parentNode.left = targetChild;
       }
@@ -159,17 +159,18 @@ class Tree {
   }
 
   levelOrderForEach(callback) {
-    if(!callback) throw new Error("Callback function is required!");
-    if(this.root === null) return;
+    if (!callback) throw new Error("Callback function is required!");
+    if (this.root === null) return;
 
-    // make the queue array
-    // go to the root
-    // stores root left and right in queue
-    // go to the root left and remove it from queue
-    // add root left children to end of queue (left-right)
-    // go to first value of queue and add children to end of queue
-    // go to first value of queue and add children to end of queue
-    // ................
+    let queue = [this.root];
+
+    while (queue.length !== 0) {
+      let current = queue.shift();
+      callback(current.data);
+
+      if (current.left !== null) queue.push(current.left);
+      if (current.right !== null) queue.push(current.right);
+    }
   }
 }
 
@@ -192,3 +193,4 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 const tree = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 prettyPrint(tree.root);
+tree.levelOrderForEach((value) => console.log(value));

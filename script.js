@@ -107,8 +107,12 @@ class Tree {
     let target = this.find(value);
     let targetChild;
 
-    //                    CASE 1 (Node has no children)
     if (target.right === null && target.left === null) {
+      if(parentNode === undefined) {
+        this.root = null;
+        return;
+      }
+
       if (parentNode.data > value) {
         parentNode.left = null;
       } else {
@@ -116,14 +120,22 @@ class Tree {
       }
       return;
     }
-    //                    CASE 2 (Node has one child (left or right))
-    if (target.right !== null || target.left !== null) {
+
+    if (
+      (target.right !== null && target.left === null) ||
+      (target.right === null && target.left !== null)
+    ) {
       if (target.right !== null) {
         targetChild = target.right;
       } else if (target.left !== null) {
         targetChild = target.left;
       }
 
+      if(parentNode === undefined) {
+        this.root = targetChild;
+        return;
+      }
+      
       if (parentNode.data > target.data) {
         parentNode.left = targetChild;
       }
@@ -132,9 +144,15 @@ class Tree {
       }
       return;
     }
-    //                    CASE 3
-    if(target.right !== null && target.left !== null) {
-      // 
+
+    if (target.right !== null && target.left !== null) {
+      let successor = target.right;
+      while (successor.left !== null) {
+        successor = successor.left;
+      }
+      this.deleteItem(successor.data);
+      target.data = successor.data;
+      return;
     }
   }
 }
@@ -156,7 +174,12 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
 };
 
+// const tree = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+// prettyPrint(tree.root);
+// tree.deleteItem(6);
+// prettyPrint(tree.root);
+
+
 const tree = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-prettyPrint(tree.root);
-tree.deleteItem(2); 
+tree.deleteItem(99);
 prettyPrint(tree.root);

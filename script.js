@@ -213,6 +213,22 @@ class Tree {
     };
     return getHeight(node);
   }
+
+  depth(value, node = this.root) {
+    if(node === null) return undefined;
+    let counter = 0;
+
+    while (node.data !== value) {
+      if (value < node.data) {
+        counter += 1;
+        return counter + this.depth(value, node.left);
+      } else if (value > node.data) {
+        counter += 1;
+        return counter + this.depth(value, node.right);
+      }
+    }
+    return counter;
+  }
 }
 
 function organizeArray(array) {
@@ -234,4 +250,4 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 const tree = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 prettyPrint(tree.root);
-console.log(tree.height(9));
+console.log(tree.depth(6));

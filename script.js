@@ -194,6 +194,10 @@ class Tree {
   postOrderForEach(callback, node = this.root) {
     if (!callback) throw new Error("Callback function is required!");
     if (node === null) return;
+
+    this.postOrderForEach(callback, node.left);
+    this.postOrderForEach(callback, node.right);
+    callback(node.data);
   }
 }
 
@@ -216,4 +220,4 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 const tree = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 prettyPrint(tree.root);
-tree.preOrderForEach((value) => console.log(value));
+tree.postOrderForEach((value) => console.log(value));

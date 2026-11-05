@@ -199,6 +199,12 @@ class Tree {
     this.postOrderForEach(callback, node.right);
     callback(node.data);
   }
+
+  height(value) {
+    let node = this.find(value);
+    if(!node) return undefined;
+    
+  }
 }
 
 function organizeArray(array) {
@@ -220,4 +226,4 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 const tree = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 prettyPrint(tree.root);
-tree.postOrderForEach((value) => console.log(value));
+console.log(tree.height(10))

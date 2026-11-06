@@ -251,6 +251,12 @@ class Tree {
     if(Math.abs(leftHeight - rightHeight) > 1) return false;
     return this.isBalanced(node.right) && this.isBalanced(node.left);
   }
+
+  rebalance() {
+    let array = [];
+    this.inOrderForEach((value) => array.push(value));
+    this.root = this.buildTree(array);
+  }
 }
 
 function organizeArray(array) {

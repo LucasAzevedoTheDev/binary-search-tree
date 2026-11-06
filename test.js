@@ -19,3 +19,10 @@ tree.insert(710);
 tree.insert(947);
 tree.insert(643);
 console.log(tree.isBalanced());
+
+
+tree.rebalance();
+console.log(tree.isBalanced());
+tree.inOrderForEach((value) => console.log(value));
+tree.preOrderForEach((value) => console.log(value));
+tree.postOrderForEach((value) => console.log(value));

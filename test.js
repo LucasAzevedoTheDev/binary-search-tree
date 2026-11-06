@@ -6,3 +6,9 @@ const tree = new Tree([
 ]);
 
 prettyPrint(tree.root);
+
+console.log(tree.isBalanced());
+
+tree.inOrderForEach((value) => console.log(value));
+tree.preOrderForEach((value) => console.log(value));
+tree.postOrderForEach((value) => console.log(value));

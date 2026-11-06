@@ -215,7 +215,7 @@ class Tree {
   }
 
   depth(value, node = this.root) {
-    if(node === null) return undefined;
+    if (node === null) return undefined;
     let counter = 0;
 
     while (node.data !== value) {
@@ -228,6 +228,11 @@ class Tree {
       }
     }
     return counter;
+  }
+
+  isBalanced(value) {
+    let node = this.find(value);
+    if (!node) return undefined;
   }
 }
 

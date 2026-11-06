@@ -234,21 +234,19 @@ class Tree {
     if (!node) return true;
 
     let leftHeight;
-    if(node.left === null) {
+    if (node.left === null) {
       leftHeight = -1;
-    }
-    else {
+    } else {
       leftHeight = this.height(node.left.data);
     }
 
     let rightHeight;
-    if(node.right === null) {
+    if (node.right === null) {
       rightHeight = -1;
-    }
-    else {
+    } else {
       rightHeight = this.height(node.right.data);
     }
-    if(Math.abs(leftHeight - rightHeight) > 1) return false;
+    if (Math.abs(leftHeight - rightHeight) > 1) return false;
     return this.isBalanced(node.right) && this.isBalanced(node.left);
   }
 
@@ -276,6 +274,4 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
 };
 
-const tree = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-prettyPrint(tree.root);
-console.log(tree.depth(6));
+export { Tree, prettyPrint };

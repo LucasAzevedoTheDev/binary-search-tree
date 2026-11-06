@@ -230,9 +230,26 @@ class Tree {
     return counter;
   }
 
-  isBalanced(value) {
-    let node = this.find(value);
-    if (!node) return undefined;
+  isBalanced(node = this.root) {
+    if (!node) return true;
+
+    let leftHeight;
+    if(node.left === null) {
+      leftHeight = -1;
+    }
+    else {
+      leftHeight = this.height(node.left.data);
+    }
+
+    let rightHeight;
+    if(node.right === null) {
+      rightHeight = -1;
+    }
+    else {
+      rightHeight = this.height(node.right.data);
+    }
+    if(Math.abs(leftHeight - rightHeight) > 1) return false;
+    return this.isBalanced(node.right) && this.isBalanced(node.left);
   }
 }
 

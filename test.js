@@ -12,3 +12,10 @@ console.log(tree.isBalanced());
 tree.inOrderForEach((value) => console.log(value));
 tree.preOrderForEach((value) => console.log(value));
 tree.postOrderForEach((value) => console.log(value));
+
+tree.insert(101);
+tree.insert(405);
+tree.insert(710);
+tree.insert(947);
+tree.insert(643);
+console.log(tree.isBalanced());
